@@ -1,0 +1,42 @@
+name: Automated Testing
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.16"
+
+          # Caching node_modules
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Lint Code
+        run: npm run lint
+
+      - name: Run Tests with Coverage
+        run: npm run test:coverage
+
+      - name: Check Coverage
+        run: |
+          COVERAGE=$(npx coverage-summary-logger < coverage/lcov.info | grep 'All files' | awk '{print $4}' | sed 's/%//')
+          if [ "$COVERAGE" -lt 75 ]; then
+            echo "Error: Code coverage is below 75%."
+            exit 1
+          fi
