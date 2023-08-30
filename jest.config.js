@@ -10,6 +10,11 @@ module.exports = {
       '!<rootDir>/*.config.js',
       '!<rootDir>/coverage/**',
   ],
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.jest.json'
+    }
+  },  
   moduleNameMapper: {
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
       '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
