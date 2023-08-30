@@ -10,11 +10,6 @@ module.exports = {
       '!<rootDir>/*.config.js',
       '!<rootDir>/coverage/**',
   ],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.json'
-    }
-  },  
   moduleNameMapper: {
       '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
       '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
@@ -25,7 +20,9 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   testEnvironment: 'jest-environment-jsdom',
   transform: {
-      '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
+      '^.+\\.(js|jsx|ts|tsx)$': ['ts-jest', {
+        tsconfig: '<rootDir>/tsconfig.json'
+      }],
   },
   transformIgnorePatterns: [
       '/node_modules/',
