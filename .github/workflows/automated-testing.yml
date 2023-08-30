@@ -15,7 +15,10 @@ jobs:
         with:
           node-version: "18.16"
 
-          # Caching node_modules
+      - name: Update npm
+        run: npm install -g npm@9.5.1
+
+      # Caching node_modules
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
