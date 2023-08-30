@@ -18,15 +18,6 @@ jobs:
       - name: Update npm
         run: npm install -g npm@9.5.1
 
-      # Caching node_modules
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Install Dependencies
         run: npm ci
 
