@@ -9,6 +9,7 @@ const createJestConfig = nextJest({
 const customJestConfig = {
 	setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
 	testEnvironment: 'jest-environment-jsdom',
+	coverageReporters: ['json'],
 	reporters: [['github-actions', {silent: false}], 'summary'],
 };
 
