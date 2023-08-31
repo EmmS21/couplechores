@@ -11,6 +11,14 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.11.1",
+		"@emotion/server": "^11.11.0",
+		"@emotion/styled": "^11.11.0",
+		"@mantine/core": "^6.0.19",
+		"@mantine/hooks": "^6.0.19",
+		"@mantine/next": "^6.0.19",
+		"@mui/icons-material": "^5.14.7",
+		"@mui/material": "^5.14.7",
 		"@types/node": "20.5.7",
 		"@types/react-dom": "18.2.7",
 		"autoprefixer": "10.4.15",
