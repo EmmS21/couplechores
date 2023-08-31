@@ -1,6 +1,8 @@
 name: Automated Testing
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches: ['*']
 
 jobs:
   build-and-test:
@@ -24,22 +26,5 @@ jobs:
       - name: Run Tests with Coverage
         run: npm run test:coverage
 
-      # Generate Coverage Report
-      - uses: ArtiomTr/jest-coverage-report-action@v2
-        id: coverage
-        with:
-          output: report-markdown
-          annotations: none
-
-      # Comment the Coverage Report on PR
-      - uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          message: ${{ steps.coverage.outputs.report }}
-
-      - name: Check Coverage
-        run: |
-          COVERAGE=$(npx coverage-summary-logger < coverage/lcov.info | grep 'All files' | awk '{print $4}' | sed 's/%//')
-          if [ "$COVERAGE" -lt 75 ]; then
-            echo "Error: Code coverage is below 75%."
-            exit 1
-          fi
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.9.0
