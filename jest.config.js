@@ -1,30 +1,19 @@
-module.exports = {
-  collectCoverage: true,
-  coverageProvider: 'v8',
-  collectCoverageFrom: [
-      '**/*.{js,jsx,ts,tsx}',
-      '!**/*.d.ts',
-      '!**/node_modules/**',
-      '!<rootDir>/out/**',
-      '!<rootDir>/.next/**',
-      '!<rootDir>/*.config.js',
-      '!<rootDir>/coverage/**',
-  ],
-  moduleNameMapper: {
-      '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-      '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
-      '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mocks__/fileMock.js`,
-      '^@/components/(.*)$': '<rootDir>/components/$1',
-  },
-  setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  testEnvironment: 'jest-environment-jsdom',
-  transform: {
-      '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest',
-  },
-  transformIgnorePatterns: [
-      '/node_modules/',
-      '^.+\\.module\\.(css|sass|scss)$',
-  ],
-}
+const nextJest = require('next/jest');
 
+const createJestConfig = nextJest({
+	// Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+	dir: './',
+});
+
+// Add any custom config to be passed to Jest
+const customJestConfig = {
+	setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
+	testEnvironment: 'jest-environment-jsdom',
+	reporters: [
+		'default',
+		['jest-junit', {outputDirectory: 'coverage', outputName: 'report.xml'}],
+	],
+};
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(customJestConfig);

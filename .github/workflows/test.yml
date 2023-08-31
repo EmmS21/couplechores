@@ -1,0 +1,36 @@
+name: Automated Testing
+
+on:
+  pull_request:
+    branches: ['*']
+
+permissions:
+  checks: write
+  pull-requests: write
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.16'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Lint Code
+        run: npm run lint
+
+      - name: Run Tests with Coverage
+        run: npm run test:coverage
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2.9.0
+        with:
+          files: 'coverage/report.xml'
