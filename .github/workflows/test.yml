@@ -2,7 +2,7 @@ name: Automated Testing
 
 on:
   pull_request:
-    branches: ['*']
+    branches: ["*"]
 
 permissions:
   checks: write
@@ -19,7 +19,15 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
-          node-version: '18.16'
+          node-version: "18.16"
+
+      - name: Cache Node Modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install Dependencies
         run: npm ci
@@ -30,7 +38,19 @@ jobs:
       - name: Run Tests with Coverage
         run: npm run test:coverage
 
+      # Generate Coverage Report
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        id: coverage
+        with:
+          output: report-markdown
+          annotations: none
+
+      # Comment the Coverage Report on PR
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: ${{ steps.coverage.outputs.report }}
+
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2.9.0
         with:
-          files: 'coverage/report.xml'
+          files: "coverage/report.xml"
