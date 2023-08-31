@@ -8,33 +8,15 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '18.16'
 
-      - name: List Global Packages Before Update
-        run: npm list -g --depth=0
-
-      - name: Update npm
-        run: npm install -g npm@9.5.1
-
-      # Caching node_modules
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: v1-${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Install Dependencies
         run: npm ci
-
-      - name: List installed packages after Installation
-        run: npm list --depth=0
 
       - name: Lint Code
         run: npm run lint
