@@ -20,9 +20,7 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   testEnvironment: 'jest-environment-jsdom',
   transform: {
-      '^.+\\.(js|jsx|ts|tsx)$': ['ts-jest', {
-        tsconfig: '<rootDir>/tsconfig.json'
-      }],
+      '^.+\\.(js|jsx|ts|tsx)$': 'ts-jest'
   },
   transformIgnorePatterns: [
       '/node_modules/',
