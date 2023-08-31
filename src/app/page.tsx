@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import landing_page from "../../public/landing_page.jpg";
 import ArrowBackIconRounded from '@mui/icons-material/ArrowBack';
+import RootLayout from "./layout";
+import { metadata } from "../../metadata";
 
 export default function Home() {
 
@@ -21,6 +23,7 @@ export default function Home() {
   }
 
   return (
+   <RootLayout metadata={metadata}>
     <main className="relative flex min-h-screen flex-col items-center justify-between p-4" id="overlay">
       {showingTNC ? 
         <div className="bg-zinc-500 h-full w-full overflow-y-auto z-30 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white p-8 rounded-md">
@@ -66,5 +69,6 @@ export default function Home() {
         <div className="flex flex-col items-center justify-center text-xxs font-bold text-zinc-500 p-2">By continuing, you agree to the <span className="underline underline-offset-2" onClick={toggleTNC}>Terms and Conditions</span></div>
       </div>
     </main>
+   </RootLayout>
   );
 }
