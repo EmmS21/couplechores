@@ -2,9 +2,12 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import landing_page from "../../public/landing_page.jpg"
+import RootLayout from "./layout";
+import { metadata } from "../../metadata";
 
 export default function Home() {
   return (
+   <RootLayout metadata={metadata}>
     <main className="flex min-h-screen flex-col items-center justify-between p-4">
       <div className="w-full items-center justify-between">
         <div className="pr-2 pl-2">
@@ -25,5 +28,6 @@ export default function Home() {
         <div className="text-xs font-bold text-white">By continuing, you agree to the <Link href="/terms">Terms and Conditions</Link></div>
       </div>
     </main>
+   </RootLayout>
   );
 }
