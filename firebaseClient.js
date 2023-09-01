@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-    apiKey: 'AIzaSyBhDanlI-QSqeMPXOz40KDJ9zHOrNeANTU',
-    authDomain: 'couplechores.firebaseapp.com',
-    projectId: 'couplechores',
-    storageBucket: 'couplechores.appspot.com',
-    messagingSenderId: '1045191990257',
-    appId: '1:1045191990257:web:566f0394ca1c651d808250',
-    measurementId: 'G-T6VT7QB2HZ'
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    projectId: process.env.PROJECT_ID,
+    storageBucket: process.env.STORAGE_BUCKET,
+    messagingSenderId: process.env.MESSAGING_SENDER_ID,
+    appId: process.env.APP_ID,
+    measurementId: process.env.MEASUREMENT_ID
 };
   
 const apps = getApps();
