@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import landing_page from "../../public/landing_page.jpg";
 import ArrowBackIconRounded from '@mui/icons-material/ArrowBack';
+import Link from "next/link";
 import RootLayout from "./layout";
 import { metadata } from "../../metadata";
 
@@ -12,10 +13,6 @@ export default function Home() {
 
   const dummyFunction = () => {
     console.log("dummyFunction called for login");
-  }
-
-  const signUpFunct = () => {
-    console.log("signUpFunct called for sign-up");
   }
 
   const toggleTNC = () => {
@@ -65,7 +62,7 @@ export default function Home() {
           <button className="border-2 border-zinc-400 bg-transparent w-1/2 font-bold py-2 px-4 rounded-full" 
           onClick={dummyFunction}>Phone #</button>
         </div>
-        <div className="flex flex-col items-center justify-center text-xs font-bold text-zinc-400">Don't have an account? <span className="text-white" onClick={signUpFunct}>Register here</span></div>
+        <div className="flex flex-col items-center justify-center text-xs font-bold text-zinc-400">Don't have an account? <Link href="/signup" className="text-white">Register here</Link></div>
         <div className="flex flex-col items-center justify-center text-xxs font-bold text-zinc-500 p-2">By continuing, you agree to the <span className="underline underline-offset-2" onClick={toggleTNC}>Terms and Conditions</span></div>
       </div>
     </main>
