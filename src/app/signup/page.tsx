@@ -158,7 +158,7 @@ export default function SignUp() {
                 </button>
             </div>
           </form>
-          <div className="flex flex-col items-center justify-center text-zinc-400">
+          <div className="flex flex-col items-center justify-center text-zinc-400"> 
             or
             <button className="border-2 border-zinc-400 bg-transparent text-xs text-black w-1/2 py-2 px-4 rounded-full" >Sign in with Google</button>
           </div>
