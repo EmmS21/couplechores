@@ -71,7 +71,7 @@ export default function SignUp() {
             setArePassWordsMatched(false);
         }
     }, [password]) 
-    //test comment x 2
+    //test comment x 3
     useEffect(() => {  
         if (phone.length < 10) {
             setIsPhoneTen(true);
