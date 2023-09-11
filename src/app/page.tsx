@@ -138,7 +138,7 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center text-xs font-bold text-zinc-400">
             Don't have an account?{" "}
             <span className="text-white" onClick={signUpFunct}>
-              Register here
+              <a href="#">Register here</a>
             </span>
           </div>
           <div className="flex flex-col items-center justify-center text-xxs font-bold text-zinc-500 p-2">
