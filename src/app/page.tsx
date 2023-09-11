@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import landing_page from "../../public/landing_page.jpg";
-import ArrowBackIconRounded from "@mui/icons-material/ArrowBack";
+import ArrowBackIconRounded from '@mui/icons-material/ArrowBack';
+import Link from "next/link";
 import RootLayout from "./layout";
 import { metadata } from "../../metadata";
 import {
@@ -53,7 +54,6 @@ export default function Home() {
   const signUpFunct = () => {
     console.log("signUpFunct called for sign-up");
   };
-
   const toggleTNC = () => {
     setShowingTNC(!showingTNC);
   };
@@ -148,7 +148,9 @@ export default function Home() {
             </span>
           </div>
         </div>
-      </main>
-    </RootLayout>
+        <div className="flex flex-col items-center justify-center text-xs font-bold text-zinc-400">Don't have an account? <Link href="/signup" className="text-white">Register here</Link></div>
+        <div className="flex flex-col items-center justify-center text-xxs font-bold text-zinc-500 p-2">By continuing, you agree to the <span className="underline underline-offset-2" onClick={toggleTNC}>Terms and Conditions</span></div>
+    </main>
+   </RootLayout>
   );
 }
