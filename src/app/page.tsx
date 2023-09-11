@@ -150,7 +150,6 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center justify-center text-xs font-bold text-zinc-400">Don't have an account? <Link href="/signup" className="text-white">Register here</Link></div>
         <div className="flex flex-col items-center justify-center text-xxs font-bold text-zinc-500 p-2">By continuing, you agree to the <span className="underline underline-offset-2" onClick={toggleTNC}>Terms and Conditions</span></div>
-      </div>
     </main>
    </RootLayout>
   );
