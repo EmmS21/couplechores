@@ -4,49 +4,32 @@ import Image from "next/image";
 import landing_page from "../../public/landing_page.jpg";
 import ArrowBackIconRounded from "@mui/icons-material/ArrowBack";
 import RootLayout from "./layout";
-import { metadata } from "../../metadata";
-import {
-  signInWithEmail,
-  signInWithGoogle,
-  signInWithPhoneNumber,
-} from "./auth/firebaseAuthHelpers";
-import { getAuth, RecaptchaVerifier } from "firebase/auth";
+import { signInWithEmail, signInWithGoogle } from "./auth/firebaseAuthHelpers";
+// import { getAuth, RecaptchaVerifier } from "firebase/auth";
 
 export default function Home() {
   const [showingTNC, setShowingTNC] = useState(false);
-  const [recaptchaVerifier, setRecaptchaVerifier] =
-    useState<RecaptchaVerifier | null>(null);
-  const auth = getAuth();
+  // const [recaptchaVerifier, setRecaptchaVerifier] =
+  //   useState<RecaptchaVerifier | null>(null);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const verifier = new RecaptchaVerifier(auth, "sign-in-button", {
-          size: "invisible",
-          callback: (response: any) => {},
-        });
-        setRecaptchaVerifier(verifier);
-      } catch (error) {
-        console.error("Error creating RecaptchaVerifier:", error);
-      }
-    }
-  }, []);
+  // useEffect(() => {
+  //   const auth = getAuth();
+  //   try {
+  //     const verifier = new RecaptchaVerifier(auth, "sign-in-button", {
+  //       size: "invisible",
+  //       callback: (response: any) => {},
+  //     });
+  //     setRecaptchaVerifier(verifier);
+  //   } catch (error) {
+  //     console.error("Error creating RecaptchaVerifier:", error);
+  //   }
+  // }, []);
 
   const handleSignInWithEmail = async () => {
     const email = prompt("Enter your email");
     const password = prompt("Enter your password");
     if (email && password) {
       await signInWithEmail({ email, password });
-    }
-  };
-
-  const handleSignInWithPhoneNumber = async () => {
-    const phoneNumber = prompt("Enter your phone number");
-    if (phoneNumber && recaptchaVerifier) {
-      await signInWithPhoneNumber({
-        phoneNumber,
-        appVerifier: recaptchaVerifier,
-      });
     }
   };
 
@@ -59,7 +42,7 @@ export default function Home() {
   };
 
   return (
-    <RootLayout metadata={metadata}>
+    <RootLayout>
       <main
         className="relative flex min-h-screen flex-col items-center justify-between p-4"
         id="overlay"
@@ -127,12 +110,6 @@ export default function Home() {
               onClick={signInWithGoogle}
             >
               Google
-            </button>
-            <button
-              className="border-2 border-zinc-400 bg-transparent w-1/2 font-bold py-2 px-4 rounded-full"
-              onClick={handleSignInWithPhoneNumber}
-            >
-              Phone #
             </button>
           </div>
           <div className="flex flex-col items-center justify-center text-xs font-bold text-zinc-400">
