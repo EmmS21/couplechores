@@ -1,0 +1,145 @@
+.container {
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.header {
+  color: white;
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.formContainer {
+  width: 100%;
+  max-width: 500px; /* assuming the max width for mobile */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 40px;
+  margin-top: calc(55% - 50px - 24px);
+  align-items: center;
+  flex-grow: 1;
+  padding-bottom: 20px;
+}
+
+.input,
+.select,
+.emailInput {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid grey;
+  color: grey;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.select {
+  appearance: none; /* Remove default appearance */
+  background-color: white;
+  cursor: pointer;
+}
+
+.emailContainer {
+  display: flex;
+  gap: 10px;
+  width: 70%;
+  justify-content: center;
+}
+
+.emailInput {
+  flex: 1;
+}
+
+.emailTab {
+  display: inline-block;
+  background-color: #e0e0e0; /* light grey, change if needed */
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 5px;
+}
+
+.inviteButton {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff; /* blue color, can adjust */
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.createButton {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff; /* blue color, can adjust */
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  align-self: center; /* center the button in its container */
+}
+
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.emailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10px;
+}
+
+.deleteEmailBtn {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.modalCloseBtn {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.emailSummary {
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+  width: 70%;
+  text-align: center;
+}
+
+@media only screen and (min-width: 768px) {
+  /* Adjust styles for larger screens if necessary */
+}

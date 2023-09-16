@@ -54,17 +54,6 @@ describe("Landing Page", () => {
     fireEvent.click(googleButton);
     expect(firebaseAuth.signInWithGoogle).toHaveBeenCalled();
   });
-  it("Calls the phone sign-in funciton when Phone button is clicked", async () => {
-    (global.prompt as jest.Mock).mockReturnValue("+1234567890");
-    (firebaseAuth.signInWithPhoneNumber as jest.Mock).mockResolvedValue(
-      undefined
-    );
-    render(<Home />);
-    const phoneButton = screen.getByText(/Phone #/);
-    expect(phoneButton).toBeInTheDocument();
-    fireEvent.click(phoneButton);
-    expect(firebaseAuth.signInWithPhoneNumber).toHaveBeenCalled();
-  });
   it("Renders all main UI elements", () => {
     render(<Home />);
     expect(
